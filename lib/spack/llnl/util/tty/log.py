@@ -31,14 +31,19 @@ _escape = re.compile(r'\x1b[^m]*m|\x1b\[?1034h')
 xon, xoff = '\x11\n', '\x13\n'
 control = re.compile('(\x11\n|\x13\n)')
 
+
 @contextmanager
 def background_safe():
     signal.signal(signal.SIGTTOU, signal.SIG_IGN)
     yield
     signal.signal(signal.SIGTTOU, signal.SIG_DFL)
 
-def is_foreground():
-    return os.getpgrp() == os.tcgetpgrp(sys.stdout.fileno())
+
+def is_background():
+    if sys.stdout.isatty():
+        return os.getpgrp() != os.tcgetpgrp(sys.stdout.fileno())
+    return False  # not writing to tty, not background
+
 
 def _strip(line):
     """Strip color and control characters from a line."""
@@ -92,7 +97,7 @@ class keyboard_input(object):
 
         try:
             # If this fails, self.old_cfg will remain None
-            if is_foreground():
+            if not is_background():
                 import termios
 
                 # save old termios settings
@@ -114,7 +119,7 @@ class keyboard_input(object):
         """If termios was avaialble, restore old settings."""
         if self.old_cfg:
             import termios
-            with background_safe():  # change it back even if we've been backgrounded
+            with background_safe():  # change it back even if backgrounded now
                 termios.tcsetattr(self.stream, termios.TCSADRAIN, self.old_cfg)
 
 
@@ -457,7 +462,7 @@ class log_output(object):
                     tostop = conf[3] & termios.TOSTOP
                 except Exception:
                     tostop = True
-                if (not tostop) or is_foreground():
+                if not (tostop and is_background()):
                     sys.stdout.write(line)
                     sys.stdout.flush()
 
@@ -473,7 +478,7 @@ class log_output(object):
 
         try:
             while True:
-                if is_foreground():
+                if not is_background():
                     with keyboard_input(stdin):
                         # No need to set any timeout for select.select
                         # Wait until a key press or an event on in_pipe.
@@ -482,7 +487,7 @@ class log_output(object):
                         # Currently ignores other chars.
                         if stdin in rlist:
                             # Double check we're still in the foreground
-                            if os.getpgrp() == os.tcgetpgrp(stdin.fileno()):
+                            if not is_background():
                                 if stdin.read(1) == 'v':
                                     echo = not echo
 
