@@ -51,7 +51,6 @@ def _strip(line):
     return _escape.sub('', line)
 
 
-
 class keyboard_input(object):
     """Context manager to disable line editing and echoing.
 
