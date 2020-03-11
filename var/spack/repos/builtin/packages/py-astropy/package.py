@@ -14,6 +14,7 @@ class PyAstropy(PythonPackage):
     homepage = 'http://www.astropy.org/'
     url = 'https://pypi.io/packages/source/a/astropy/astropy-3.2.1.tar.gz'
 
+    version('4.0', sha256='404200e0baa84de09ac563ad9ccab3817e9b9669d0025cee74a8752f4bc2771b')
     version('3.2.1', sha256='706c0457789c78285e5464a5a336f5f0b058d646d60f4e5f5ba1f7d5bf424b28')
     version('2.0.14', sha256='618807068609a4d8aeb403a07624e9984f566adc0dc0f5d6b477c3658f31aeb6')
     version('1.1.2', sha256='6f0d84cd7dfb304bb437dda666406a1d42208c16204043bc920308ff8ffdfad1')
