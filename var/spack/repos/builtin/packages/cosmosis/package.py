@@ -35,8 +35,8 @@ class Cosmosis(MakefilePackage):
     # notify when the package is updated.
     # maintainers = ['github_user1', 'github_user2']
 
-    version('1.6.2', sha256='b4e5edb9c144b8bf404a3af554f526f52494c48e81c47c53d61d172d27b823b1')
-    #version('1.6.2', tag='v1.6.2', submodules='True')
+    #version('1.6.2', sha256='b4e5edb9c144b8bf404a3af554f526f52494c48e81c47c53d61d172d27b823b1')
+    version('1.6.2', tag='v1.6.2', submodules='True')
 
     # FIXME: Add dependencies if required.
     # depends_on('foo')
