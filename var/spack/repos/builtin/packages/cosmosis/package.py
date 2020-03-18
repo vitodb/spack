@@ -28,15 +28,15 @@ class Cosmosis(MakefilePackage):
 
     # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://www.example.com"
-    #url      = "https://bitbucket.org/joezuntz/cosmosis/get/v1.6.2.tar.bz2"
-    git      = 'https://bitbucket.org/joezuntz/cosmosis.git'
+    url      = "https://bitbucket.org/joezuntz/cosmosis/get/v1.6.2.tar.bz2"
+    #git      = 'https://bitbucket.org/joezuntz/cosmosis.git'
 
     # FIXME: Add a list of GitHub accounts to
     # notify when the package is updated.
     # maintainers = ['github_user1', 'github_user2']
 
-    #version('1.6.2', sha256='b4e5edb9c144b8bf404a3af554f526f52494c48e81c47c53d61d172d27b823b1')
-    version('1.6.2', tag='v1.6.2', submodules='True')
+    version('1.6.2', sha256='b4e5edb9c144b8bf404a3af554f526f52494c48e81c47c53d61d172d27b823b1')
+    #version('1.6.2', tag='v1.6.2', submodules='True')
 
     # FIXME: Add dependencies if required.
     # depends_on('foo')
