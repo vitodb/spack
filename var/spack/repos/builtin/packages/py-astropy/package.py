@@ -21,6 +21,7 @@ class PyAstropy(PythonPackage):
     version('1.1.post1', sha256='64427ec132620aeb038e4d8df94d6c30df4cc8b1c42a6d8c5b09907a31566a21')
 
     variant('extras', default=False, description='Enable extra functionality')
+    variant('usesystemlib', default=True, description='Use external libraries for erfa, wcslib, cfitsio and expat')
 
     # Required dependencies
     depends_on('python@3.6:', when='@4.0:', type=('build', 'run'))
@@ -55,10 +56,10 @@ class PyAstropy(PythonPackage):
     depends_on('py-pytest', when='+extras', type=('build', 'run'))
 
     # System dependencies
-    depends_on('erfa')
-    depends_on('wcslib')
-    depends_on('cfitsio')
-    depends_on('expat')
+    depends_on('erfa', when='+usesystemlib')
+    depends_on('wcslib', when='+usesystemlib')
+    depends_on('cfitsio', when='+usesystemlib')
+    depends_on('expat', when='+usesystemlib')
 
     def build_args(self, spec, prefix):
         args = [
@@ -68,6 +69,9 @@ class PyAstropy(PythonPackage):
             '--use-system-cfitsio',
             '--use-system-expat'
         ]
+
+        if spec.satisfies('-usesystemlib'):
+            args = []
 
         if spec.satisfies('^python@3:'):
             args.extend(['-j', str(make_jobs)])
