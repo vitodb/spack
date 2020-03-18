@@ -40,7 +40,7 @@ class Cosmosis(MakefilePackage):
 
     # FIXME: Add dependencies if required.
     # depends_on('foo')
-    depends_on('python@3.8.1:')
+    #depends_on('python@3.8.1:')
     #depends_on('gcc@8.3.0:')
     depends_on('py-configparser')
     depends_on('py-future')
