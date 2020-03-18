@@ -47,7 +47,7 @@ class Cosmosis(MakefilePackage):
     depends_on('py-ipython')
     depends_on('py-python-dateutil')
     depends_on('py-tornado')
-    depends_on('py-astropy')
+    depends_on('py-astropy -usesystemlib')
     depends_on('py-matplotlib@2.0.0:')
     depends_on('py-mpi4py')
     depends_on('py-emcee')
