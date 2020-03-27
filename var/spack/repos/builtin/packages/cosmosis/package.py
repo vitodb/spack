@@ -29,12 +29,14 @@ class Cosmosis(MakefilePackage):
     # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://www.example.com"
     url      = "https://bitbucket.org/joezuntz/cosmosis/get/v1.6.2.tar.bz2"
-    #git      = 'https://bitbucket.org/joezuntz/cosmosis.git'
+    git      = 'https://bitbucket.org/joezuntz/cosmosis.git'
 
     # FIXME: Add a list of GitHub accounts to
     # notify when the package is updated.
     # maintainers = ['github_user1', 'github_user2']
 
+    version('neutrinoless_mass_function_1', commit='790b718ea6d7f47f6d3f8fb6d7340e69709066ac')
+    version('neutrinoless_mass_function_latest', branch='neutrinoless_mass_function', no_cache=True)
     version('1.6.2', sha256='b4e5edb9c144b8bf404a3af554f526f52494c48e81c47c53d61d172d27b823b1')
     #version('1.6.2', tag='v1.6.2', submodules='True')
 
@@ -42,6 +44,12 @@ class Cosmosis(MakefilePackage):
     # depends_on('foo')
     #depends_on('python@3.8.1:')
     #depends_on('gcc@8.3.0:')
+
+    #cosmosis-standard-library
+    depends_on('cosmosis-standard-library@neutrinoless_mass_function_1', when='@neutrinoless_mass_function_1')
+    #depends_on('cosmosis-standard-library@neutrinoless_mass_function_latest', when='@neutrinoless_mass_function_latest')
+    depends_on('cosmosis-standard-library')
+
     depends_on('py-configparser')
     depends_on('py-future')
     depends_on('py-ipython')
@@ -62,7 +70,6 @@ class Cosmosis(MakefilePackage):
     depends_on('minuit')
     depends_on('sqlite')
     depends_on('cfitsio')
-    depends_on('cosmosis-standard-library')
     #depends_on('')
 
 

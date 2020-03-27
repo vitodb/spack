@@ -29,11 +29,14 @@ class CosmosisStandardLibrary(MakefilePackage):
     # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://www.example.com"
     url      = "https://bitbucket.org/joezuntz/cosmosis-standard-library/get/v1.6.2.tar.bz2"
+    git      = 'https://bitbucket.org/joezuntz/cosmosis-standard-library.git'
 
     # FIXME: Add a list of GitHub accounts to
     # notify when the package is updated.
     # maintainers = ['github_user1', 'github_user2']
 
+    version('neutrinoless_mass_function_1', commit='1daec6833c0d521ae0f7168f932d5ce6ebed6fa4')
+    #version('neutrinoless_mass_function_latest', branch='neutrinoless_mass_function', no_cache=True)
     version('1.6.2', sha256='830dda7c4bbd54ebb7b9806d563982d5a180094824213fb74543b21c5f74dc44')
 
     # FIXME: Add dependencies if required.
