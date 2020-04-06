@@ -19,7 +19,6 @@ class Cosmosis(MakefilePackage):
 
     version('neutrinoless_mass_function_2', commit='a7f39b5af97f863ed9297b2e536548db7f425110')
     version('neutrinoless_mass_function_1', commit='790b718ea6d7f47f6d3f8fb6d7340e69709066ac')
-    #version('neutrinoless_mass_function_latest', branch='neutrinoless_mass_function', no_cache=True)
     version('1.6.2', sha256='b4e5edb9c144b8bf404a3af554f526f52494c48e81c47c53d61d172d27b823b1')
 
     resource(name='cosmosis-standard-library', git='https://bitbucket.org/joezuntz/cosmosis-standard-library.git',
@@ -68,7 +67,6 @@ class Cosmosis(MakefilePackage):
     def build(self, spec, prefix):
         import inspect
         install_tree('.',prefix)
-        print('prefix', prefix) 
         with working_dir(prefix):
             inspect.getmodule(self).make(*self.build_targets)
 
@@ -77,6 +75,7 @@ class Cosmosis(MakefilePackage):
         pass
 
     def setup_run_environment(self, env):
+        """Set up the run environment for this package."""
         env.prepend_path('PATH', self.prefix+'/bin')
         env.prepend_path('PYTHONPATH', self.prefix)
         env.prepend_path('LD_LIBRARY_PATH',self.prefix+'/cosmosis/datablock')
