@@ -36,9 +36,20 @@ class Cosmosis(MakefilePackage):
     # maintainers = ['github_user1', 'github_user2']
 
     version('neutrinoless_mass_function_1', commit='790b718ea6d7f47f6d3f8fb6d7340e69709066ac')
-    version('neutrinoless_mass_function_latest', branch='neutrinoless_mass_function', no_cache=True)
+    version('neutrinoless_mass_function_2', commit='a7f39b5af97f863ed9297b2e536548db7f425110')
+    #version('neutrinoless_mass_function_latest', branch='neutrinoless_mass_function', no_cache=True)
     version('1.6.2', sha256='b4e5edb9c144b8bf404a3af554f526f52494c48e81c47c53d61d172d27b823b1')
     #version('1.6.2', tag='v1.6.2', submodules='True')
+
+    resource(name='cosmosis-standard-library', git='https://bitbucket.org/joezuntz/cosmosis-standard-library.git',
+             tag="v1.6.2",
+             destination='.', when='@v1.6.2')
+    resource(name='cosmosis-standard-library', git='https://bitbucket.org/joezuntz/cosmosis-standard-library.git',
+             commit="1daec6833c0d521ae0f7168f932d5ce6ebed6fa4",
+             destination='.', when='@neutrinoless_mass_function_1')
+    resource(name='cosmosis-standard-library', git='https://bitbucket.org/joezuntz/cosmosis-standard-library.git',
+             commit="30e90c9e8882aa6505e2019ad8b6ef4196471109",
+             destination='.', when='@neutrinoless_mass_function_2')
 
     # FIXME: Add dependencies if required.
     # depends_on('foo')
@@ -46,9 +57,8 @@ class Cosmosis(MakefilePackage):
     #depends_on('gcc@8.3.0:')
 
     #cosmosis-standard-library
-    depends_on('cosmosis-standard-library@neutrinoless_mass_function_1', when='@neutrinoless_mass_function_1')
-    #depends_on('cosmosis-standard-library@neutrinoless_mass_function_latest', when='@neutrinoless_mass_function_latest')
-    depends_on('cosmosis-standard-library')
+    #depends_on('cosmosis-standard-library@neutrinoless_mass_function_1', when='@neutrinoless_mass_function_1')
+    #depends_on('cosmosis-standard-library')
 
     depends_on('py-configparser')
     depends_on('py-future')
@@ -97,7 +107,7 @@ class Cosmosis(MakefilePackage):
     def build(self, spec, prefix):
         import inspect
         install_tree('.',prefix)
-        os.symlink(self.spec['cosmosis-standard-library'].prefix, prefix+'/cosmosis-standard-library')
+        # os.symlink(self.spec['cosmosis-standard-library'].prefix, prefix+'/cosmosis-standard-library')
         print('prefix', prefix) 
         with working_dir(prefix):
             inspect.getmodule(self).make(*self.build_targets)
