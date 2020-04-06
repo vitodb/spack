@@ -9,8 +9,8 @@ import os
 class Cosmosis(MakefilePackage):
     """CosmoSIS is a modular system for cosmological parameter estimation problems."""
 
-    homepage = "https://bitbucket.org/joezuntz/cosmosis/wiki/Home"
-    url      = "https://bitbucket.org/joezuntz/cosmosis/get/v1.6.2.tar.bz2"
+    homepage = 'https://bitbucket.org/joezuntz/cosmosis/wiki/Home'
+    url      = 'https://bitbucket.org/joezuntz/cosmosis/get/v1.6.2.tar.bz2'
     git      = 'https://bitbucket.org/joezuntz/cosmosis.git'
 
     # FIXME: Add a list of GitHub accounts to
@@ -22,13 +22,13 @@ class Cosmosis(MakefilePackage):
     version('1.6.2', sha256='b4e5edb9c144b8bf404a3af554f526f52494c48e81c47c53d61d172d27b823b1')
 
     resource(name='cosmosis-standard-library', git='https://bitbucket.org/joezuntz/cosmosis-standard-library.git',
-             commit="30e90c9e8882aa6505e2019ad8b6ef4196471109",
+             commit='30e90c9e8882aa6505e2019ad8b6ef4196471109',
              destination='.', when='@neutrinoless_mass_function_2')
     resource(name='cosmosis-standard-library', git='https://bitbucket.org/joezuntz/cosmosis-standard-library.git',
-             commit="1daec6833c0d521ae0f7168f932d5ce6ebed6fa4",
+             commit='1daec6833c0d521ae0f7168f932d5ce6ebed6fa4',
              destination='.', when='@neutrinoless_mass_function_1')
     resource(name='cosmosis-standard-library', git='https://bitbucket.org/joezuntz/cosmosis-standard-library.git',
-             tag="v1.6.2",
+             tag='v1.6.2',
              destination='.', when='@v1.6.2')
 
     depends_on('py-configparser')
