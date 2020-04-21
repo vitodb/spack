@@ -29,7 +29,7 @@ class Cosmosis(MakefilePackage):
              destination='.', when='@neutrinoless_mass_function_1')
     resource(name='cosmosis-standard-library', git='https://bitbucket.org/joezuntz/cosmosis-standard-library.git',
              tag='v1.6.2',
-             destination='.', when='@v1.6.2')
+             destination='.', when='@1.6.2')
 
     depends_on('py-configparser')
     depends_on('py-future')
