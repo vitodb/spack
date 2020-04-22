@@ -58,6 +58,8 @@ class Cosmosis(MakefilePackage):
         env.set('LAPACK_LINK','-lopenblas')
         env.set('GSL_INC', self.spec['gsl'].prefix+'/include')
         env.set('GSL_LIB', self.spec['gsl'].prefix+'/lib')
+        env.set('FFTW_INCLUDE_DIR', self.spec['fftw'].prefix+'/include')
+        env.set('FFTW_LIBRARY', self.spec['fftw'].prefix+'/lib')
         env.set('MINUIT2_INC', self.spec['minuit'].prefix+'/include')
         env.set('MINUIT2_LIB', self.spec['minuit'].prefix+'/lib')
         env.set('CFITSIO_INC', self.spec['cfitsio'].prefix+'/include')
