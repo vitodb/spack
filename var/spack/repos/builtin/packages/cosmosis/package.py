@@ -84,4 +84,6 @@ class Cosmosis(MakefilePackage):
         env.prepend_path('LD_LIBRARY_PATH',self.prefix+'/cosmosis-standard-library/likelihood/planck/plc-1.0/lib')
         env.prepend_path('LD_LIBRARY_PATH',self.prefix+'/cosmosis-standard-library/likelihood/planck2015/plc-2.0/lib')
         env.set('COSMOSIS_SRC_DIR', self.prefix)
+        env.set('GSL_LIB', self.spec['gsl'].prefix+'/lib')
+        env.set('FFTW_LIBRARY', self.spec['fftw'].prefix+'/lib')
 
